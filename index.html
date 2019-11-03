@@ -16,7 +16,7 @@
 <link rel = "stylesheet" href = "assets/css/questions.css" type = "text/css">
 </head>
 
-<body>
+<body onload = "on_load()">
 <div class = "header">
 	<h1>Who Wants To Fill A Questionnaire!</h1>
 </div>
@@ -24,13 +24,39 @@
 	<div class = "bodier">
 		<div class = "row">
 			<div class = "col-md-12">
-				<h2 id = "question">question</h2>
+				<h2 id = "question">Question: <div id="question-input"></div></h2>
+			</div>
+		</div>
+		<div class = "row" id = "answer-input">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<h3 id = "answer">You Have <strong id = "timer">25</strong> Seconds to answer.</h3>
+				<div>
+					<div class = "row">
+						<div class = "answer-box col-md-4" id = "box-1" value = "1">placeholder</div>
+						<div class = "col-md-1"></div>
+						<div class="answer-box col-md-4" id = "box-2" value = "2">placeholder</div>
+					</div>
+					<div class = "row">
+						<div class="answer-box col-md-4" id = "box-3" value = "3">placeholder</div>
+						<div class="col-md-1"></div>
+						<div class="answer-box col-md-4" id = "box-4" value = "4">placeholder</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class = "row">
-			<div class = "col-md-4"></div>
-			<div class = "col-md-5" id = "answer">
-				answer
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<h4 id = "result">You answered <strong id = "result-input">correctly!</strong></h4>
+
+				<div id = "result-blurb"></div>
+			</div>
+		</div>
+		<div class = "row" id = "buttons">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<button id = "main-button"></button>
 			</div>
 		</div>
 	</div>
