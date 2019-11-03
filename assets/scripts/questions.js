@@ -51,6 +51,9 @@ var question_selected = {};
 var answer_selected = false;
 var selected_answer = 0;
 var correct_answer = 0;
+var time = 0;
+var clock_runs = false;
+var interval = 0;
 
 function on_load()
 {
@@ -74,7 +77,36 @@ function populate_text(form)
 
 }
 
-var advance_quiz = $("#main-button").on("click", function advance_question()
+function start_clocks(val, ti)
+{
+	if(val)
+	{
+		clearInterval(interval);
+		interval = setInterval(count, 1000);
+		clock_runs = true;
+		time = ti;
+	}
+	else
+	{
+		clearInterval(interval);
+		clock_runs = false;
+	}
+}
+
+function count()
+{
+	time--;
+	$("#timer").text(time);
+	if(time <= 0)
+	{
+		start_clocks(false, 0);
+		advance_question();
+	}
+}
+
+var advance_quiz = $("#main-button").on("click", advance_question);
+
+function advance_question()
 {
 	switch(game_state)
 	{
@@ -85,6 +117,7 @@ var advance_quiz = $("#main-button").on("click", function advance_question()
 			question_selected = questions[question_count];
 			populate_text(question_selected);
 			game_state = "question";
+			start_clocks(true, 25);
 		break;
 
 		case "question":
@@ -111,6 +144,7 @@ var advance_quiz = $("#main-button").on("click", function advance_question()
 				question_count++;
 				if (question_results.length != questions.length)
 				{
+					start_clocks(true, 3);
 					game_state = "result";
 				}
 				else
@@ -125,9 +159,10 @@ var advance_quiz = $("#main-button").on("click", function advance_question()
 					}
 					$("#question").hide();
 					$("#answer-input").hide();
-					$("#result-input").text(correct_count + " questions correctly.");
+					$("#result-input").text(correct_count + " out of 8 questions correctly.");
 					$("#result-blurb").text("Would you like to try again?");
 					$("#main-button").text("retry");
+					start_clocks(false, 0);
 					game_state = "endgame";
 				}
 			}
@@ -147,6 +182,7 @@ var advance_quiz = $("#main-button").on("click", function advance_question()
 			$("#result-input").hide();
 			question_selected = questions[question_count];
 			populate_text(question_selected);
+			start_clocks(true, 25);
 			game_state = "question";
 		break;
 
@@ -154,7 +190,7 @@ var advance_quiz = $("#main-button").on("click", function advance_question()
 			location.reload();
 		break;
 	}
-});
+}
 
 var button_select = $(".answer-box").on("click", function select_button() {
 	selected_answer = $(this).attr("value");
