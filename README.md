@@ -4,6 +4,8 @@
 
 ### The aim of the game is simple! just click the shiny boxes that don't react at all to your touch because they are more stoic than british palace guards and VOILA! you'll get told how slightly uneducated you are!
 
+## if you want to play the game just click the link here https://ametueraspirant.github.io/trivia_game/
+
 ![image1](assets/images/readme1.png)
 
 I'll be solid this could have been a lot better but I ran out of time for all the cool stuff I wanted to do. you can't see it but trust me it was gonna be super great lots of camera angles and photoshop of the show and all that!
